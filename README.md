@@ -14,6 +14,12 @@ The Trie Class was invented to test the efficiency of a trie for word suggestion
 
 2. By having the underlying node class while traversing the tree you are able to return all full works along the current path 
 
-
+# Demo 
 ![Image description](https://github.com/eriktoor/Trie_JS/blob/master/trie_pic.JPG)
 
+# Steps to use trie data structure 
+
+```
+git clone repo
+```
+Put it up on your localhost or just view the file in your web browser! Additionally, if you would like to connect a database to the trie datastructure you just need to read out the words in an array to the Trie. 
