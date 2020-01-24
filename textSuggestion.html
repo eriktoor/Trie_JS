@@ -1,0 +1,131 @@
+<html>
+
+    <head>
+        <script  src="trieForTextSuggestion.js" ></script>      
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+
+    <div class="form-group" style="margin:10% 20%">
+
+    <script>
+
+    document.body.onload = function(){
+        let y = trie_sample.prettyPrintTree()
+        document.getElementById("prettyPrint").innerHTML = y
+    };
+
+        
+
+    function clickSuggestion(id){
+        // window.open("https://en.wikipedia.org/wiki/" + id)
+
+        window.open("https://en.wikipedia.org/wiki/" + id)
+
+        
+    }
+    
+    function nodeInfo(word, trie){
+        out = trie.nodeInfo(word)
+
+        try {
+            document.getElementById("nodeInfo").innerHTML = "Character: " + out.character + ", Weight: "+ out.weight + ", isWord: " + out.isWord + ", numChildren: " + out.children.length
+        } catch (e){
+            if (word.length == 0){
+                document.getElementById("nodeInfo").innerHTML = "Please type in an entry"
+            } else{
+                document.getElementById("nodeInfo").innerHTML = word + " is not in this trie"
+            }
+        }
+        
+
+
+    }
+
+
+    function suggest(word, trie){
+        out = trie.suggest(word)
+
+        var string; 
+        if (out.includes("Search")){
+            string = "<p>Search for a result...</p>"
+        } else if (out.includes("No results")) {
+            string = "<p>No results found</p>"            
+        } else{
+            for (var word in out){
+
+                currWord = out[word]
+                if (typeof(currWord) == undefined) {
+                    alert(currWord)
+                }
+                string += "<button type='button' style='margin:10px;' class='btn btn-primary' id='"  + currWord + "' onclick='clickSuggestion(this.id)'>" + currWord + "</button>"
+
+            }
+        }
+
+        document.getElementById("suggestionSelect").innerHTML = string
+        document.getElementById("suggestionSelect").innerHTML = document.getElementById("suggestionSelect").innerHTML.replace("undefined", "")
+
+    }
+
+    function color(word){ 
+        if (word.length == 0){
+            let y = trie_sample.prettyPrintTree()
+            document.getElementById("prettyPrint").innerHTML = y
+        } else if (word.length == 1){
+            document.getElementById("level1").innerHTML = document.getElementById("level1").innerHTML.replace(word[0], "<p style='display:inline-block; color: yellow'>" + word[0] + "</p>") 
+        } else if (word.length == 2){
+            document.getElementById("level2").innerHTML = document.getElementById("level1").innerHTML.replace(word[1], "Z") 
+        } else if (word.length == 3){
+            document.getElementById("level3").innerHTML = document.getElementById("level1").innerHTML.replace(word[2], "Z") 
+        } else if (word.length == 4){
+            document.getElementById("level4").innerHTML = document.getElementById("level1").innerHTML.replace(word[3], "Z") 
+        }
+
+
+    }
+    </script>
+
+    <h1 style="text-align: center;">Learn more about the 50 states</h1>
+
+    <br>
+
+    <p>This applet allows you to conduct search based on key-up based on a Trie created of the US 50 states. Look at my Trie data structure <a href='./trieForTextSuggestion.js'>here</a>.</p>
+
+    <br>
+
+    <input class="form-control" placeholder="Type a name here" onkeyup="suggest(this.value, trie)" id="text" />
+
+
+    <div id ="suggestionSelect">
+    </div>
+
+    <br><br>
+
+    <p>Below you can see a print out of a Trie with the words Erik, Eve, Adam, and Amy in it.</p>
+
+    <input class="form-control" placeholder="Type a name here" onkeyup="nodeInfo(this.value, trie_sample)" id="text" />
+
+    <br>
+    <p id="nodeInfo"></p>
+
+    <br>
+
+    <div id="prettyPrint"></div>
+
+    </div>
+
+
+
+
+
+    <!-- <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+        <option value="AL">Alabama</option>
+        <option value="WY">Wyoming</option>
+      </select> -->
+
+
+
+
+
+</html>
