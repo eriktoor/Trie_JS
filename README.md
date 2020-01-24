@@ -13,3 +13,7 @@ b. How many words pass through this node
 c. If you are at a completed word 
 
 2. By having the underlying node class while traversing the tree you are able to return all full works along the current path 
+
+
+![Image description](https://github.com/eriktoor/Trie_JS/blob/master/trie_pic.JPG)
+
