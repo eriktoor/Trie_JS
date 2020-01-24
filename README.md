@@ -8,9 +8,9 @@ The Trie Class was invented to test the efficiency of a trie for word suggestion
 # Trie Architecture
 
 1. The Trie has an underlying Node class 
-a. The node class of the trie keeps track of the amount of children it has
-b. How many words pass through this node 
-c. If you are at a completed word 
+- The node class of the trie keeps track of the amount of children it has
+- How many words pass through this node 
+- If you are at a completed word 
 
 2. By having the underlying node class while traversing the tree you are able to return all full works along the current path 
 
