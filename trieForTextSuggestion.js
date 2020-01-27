@@ -239,7 +239,7 @@ class Trie{
     }
     
 
-    buildTrie(words){ //still need to allow multiple words to be appended to the same path 
+    buildTrie(words){ //makes the trie 
         var currNode = this.root
 
         for (var word in words){
